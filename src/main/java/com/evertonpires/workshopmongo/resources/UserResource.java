@@ -67,4 +67,13 @@ public class UserResource {//controlador rest
 		service.delete(id);
 		return ResponseEntity.noContent().build();
 	}
+	
+	//update
+	@RequestMapping(value="/{id}",method=RequestMethod.PUT)
+	public ResponseEntity<UserDTO> update(@RequestBody UserDTO objDto , @PathVariable String id){
+		User obj = service.FromDTO(objDto);//converteu o DTO para User
+		obj.setId(id);
+		obj = service.update(obj);//inseriu no BD
+		return ResponseEntity.noContent().build();
+	}
 }
