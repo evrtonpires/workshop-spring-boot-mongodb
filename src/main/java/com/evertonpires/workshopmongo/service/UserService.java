@@ -28,8 +28,14 @@ public class UserService {
 	public User insert(User obj) {
 		return repo.insert(obj);
 	}
-	
+	//deletar
+	public void delete(String id) {
+		findById(id);
+		repo.deleteById(id);
+	}
 	public User FromDTO(UserDTO objDTO) {
 		return new User(objDTO.getId() , objDTO.getNome() , objDTO.getEmail());
 	}
+	
+	
 }

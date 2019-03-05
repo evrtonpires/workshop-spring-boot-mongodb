@@ -59,4 +59,12 @@ public class UserResource {//controlador rest
 		return ResponseEntity.created(uri).build();//created retorna o código 201, que é o codigo de resposta HTTP quando voce cria um novo recurso
 		//este código retorna uma resposta vazia, com o código 201, e com o cabeçalhjo contendo a localizacao do novo recurso criado
 	}
+	
+	
+	//deletar por id
+	@RequestMapping(value="/{id}",method=RequestMethod.DELETE)
+	public ResponseEntity<UserDTO> delete(@PathVariable String id){
+		service.delete(id);
+		return ResponseEntity.noContent().build();
+	}
 }
