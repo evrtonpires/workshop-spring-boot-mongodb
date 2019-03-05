@@ -1,12 +1,14 @@
 package com.evertonpires.workshopmongo.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.evertonpires.workshopmongo.domain.User;
 import com.evertonpires.workshopmongo.repository.UserRepository;
+import com.evertonpires.workshopmongo.service.exception.ObjectNotFoundException;
 
 @Service
 public class UserService {
@@ -16,5 +18,10 @@ public class UserService {
 	public List<User> findAll(){
 		return repo.findAll();//vai no BG e retorna todos os objetos deste tipo do usuario
 	}
+	
+	public User findById(String id) {
+		Optional<User> obj = repo.findById(id);
+		return obj.orElseThrow(() -> new ObjectNotFoundException(String.format("Objeto não encontrado",id)));
+		}
 	
 }
